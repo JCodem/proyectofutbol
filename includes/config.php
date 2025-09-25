@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'futbol_db';
+$dbname = 'u232801632_JiZ7e';
 $username = 'u232801632_f8ins';
 $password = '&6Q8g8rKl4Mp';
 
