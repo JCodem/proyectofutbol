@@ -21,4 +21,4 @@ require_once 'includes/config.php';
     </div>
     <script src="js/public.js"></script>
 </body>
-</html>a
+</html>
