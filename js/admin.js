@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadMatches();
+    checkNewMatchesEnabled();
+    loadVisitorStats();
+    // Actualizar estadísticas cada 5 minutos
+    setInterval(loadVisitorStats, 300000);
     
     // New match form handler
     document.getElementById('newMatchForm').addEventListener('submit', function(e) {
@@ -10,6 +14,47 @@ document.addEventListener('DOMContentLoaded', function() {
         createMatch(teamA, teamB);
     });
 });
+
+function loadVisitorStats() {
+    console.log('Cargando estadísticas de visitantes...');
+    fetch('includes/get_visitor_stats.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Datos recibidos:', data);
+            if (data.error) {
+                console.error('Error en los datos:', data.error);
+                return;
+            }
+            document.getElementById('todayVisitors').textContent = data.today || '0';
+            document.getElementById('totalVisitors').textContent = data.total || '0';
+            document.getElementById('lastUpdate').textContent = data.lastUpdate ? 
+                new Date(data.lastUpdate).toLocaleString() : 'No disponible';
+        })
+        .catch(error => {
+            console.error('Error al cargar estadísticas:', error);
+            document.getElementById('todayVisitors').textContent = 'Error';
+            document.getElementById('totalVisitors').textContent = 'Error';
+            document.getElementById('lastUpdate').textContent = 'Error al cargar';
+        });
+}
+
+function checkNewMatchesEnabled() {
+    fetch('includes/get_system_config.php')
+        .then(response => response.json())
+        .then(config => {
+            const form = document.getElementById('newMatchForm');
+            const inputs = form.getElementsByTagName('input');
+            const button = form.querySelector('button');
+            
+            if (config.enable_new_matches === '0') {
+                form.classList.add('disabled');
+                Array.from(inputs).forEach(input => input.disabled = true);
+                button.disabled = true;
+                form.insertAdjacentHTML('beforeend', '<div class="disabled-message">La creación de nuevos partidos está deshabilitada</div>');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
 
 function loadMatches() {
     fetch('includes/get_matches.php')

@@ -6,7 +6,7 @@ require_once 'includes/config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partidos en Vivoo</title>
+    <title>Partidos en Vivo</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -19,6 +19,13 @@ require_once 'includes/config.php';
             <!-- Matches will be loaded here dynamically -->
         </div>
     </div>
+    
+    <footer class="site-footer">
+        <div class="creator-signature">
+            <span class="inverted-text crossed-out">jcodem</span>
+        </div>
+    </footer>
+
     <script src="js/public.js"></script>
 </body>
 </html>

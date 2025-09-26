@@ -17,9 +17,29 @@ require_once 'includes/config.php';
 <body>
     <div class="admin-container">
         <header>
-
+            <h1>Panel de Administración</h1>
             <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
         </header>
+
+        <div class="stats-panel">
+            <div class="stats-card">
+                <h3>Estadísticas de Visitantes</h3>
+                <div id="visitorStats" class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Visitas Hoy:</span>
+                        <span id="todayVisitors" class="stat-value">Cargando...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total de Visitas:</span>
+                        <span id="totalVisitors" class="stat-value">Cargando...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Última Actualización:</span>
+                        <span id="lastUpdate" class="stat-value">Cargando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="match-form">
             <h2>Crear Nuevo Partido</h2>
