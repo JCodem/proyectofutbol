@@ -7,7 +7,9 @@ $password = '4at;Ou:m:Oe';
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->exec("SET NAMES 'utf8'");
 } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    die("Error de conexión: " . $e->getMessage());
 }
 ?>
