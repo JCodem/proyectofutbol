@@ -1,4 +1,18 @@
 <?php
+// Definir la URL base del sitio
+$base_url = '';
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    $base_url = "https://";
+} else {
+    $base_url = "http://";
+}
+$base_url .= $_SERVER['HTTP_HOST'];
+$base_url .= dirname($_SERVER['PHP_SELF']);
+if (substr($base_url, -1) !== '/') {
+    $base_url .= '/';
+}
+define('BASE_URL', $base_url);
+
 if (file_exists(__DIR__ . '/config.local.php')) {
     // Usar configuración local para desarrollo
     require_once __DIR__ . '/config.local.php';

@@ -22,7 +22,7 @@ function updateSupportCounts(matchId, counts) {
 }
 
 function loadSupportCounts() {
-    fetch('includes/get_support_counts.php')
+    fetch(document.baseURI + 'includes/get_support_counts.php')
         .then(response => response.json())
         .then(data => {
             if (data.success && data.counts) {
@@ -37,7 +37,7 @@ function loadSupportCounts() {
 }
 
 function loadMatches() {
-    fetch('includes/get_matches.php')
+    fetch(document.baseURI + 'includes/get_matches.php')
         .then(response => response.json())
         .then(matches => {
             const matchesList = document.getElementById('publicMatchesList');
@@ -58,7 +58,7 @@ function supportTeam(matchId, teamId) {
         button.disabled = true;
     }
 
-    fetch('includes/support_team.php', {
+    fetch(document.baseURI + 'includes/support_team.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ function supportTeam(matchId, teamId) {
 }
 
 function loadVisitorStats() {
-    fetch('includes/get_visitor_stats.php')
+    fetch(document.baseURI + 'includes/get_visitor_stats.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {

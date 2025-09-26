@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadVisitorStats() {
     console.log('Cargando estadísticas de visitantes...');
-    fetch('includes/get_visitor_stats.php')
+    fetch(document.baseURI + 'includes/get_visitor_stats.php')
         .then(response => response.json())
         .then(data => {
             console.log('Datos recibidos:', data);
@@ -39,7 +39,7 @@ function loadVisitorStats() {
 }
 
 function checkNewMatchesEnabled() {
-    fetch('includes/get_system_config.php')
+    fetch(document.baseURI + 'includes/get_system_config.php')
         .then(response => response.json())
         .then(config => {
             const form = document.getElementById('newMatchForm');
@@ -57,7 +57,7 @@ function checkNewMatchesEnabled() {
 }
 
 function loadMatches() {
-    fetch('includes/get_matches.php')
+    fetch(document.baseURI + 'includes/get_matches.php')
         .then(response => response.json())
         .then(matches => {
             const matchesList = document.getElementById('matchesList');
@@ -72,7 +72,7 @@ function loadMatches() {
 }
 
 function createMatch(teamA, teamB) {
-    fetch('includes/create_match.php', {
+    fetch(document.baseURI + 'includes/create_match.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ function createMatchCard(match) {
 }
 
 function updateScore(matchId, team) {
-    fetch('includes/update_score.php', {
+    fetch(document.baseURI + 'includes/update_score.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function updateScore(matchId, team) {
 }
 
 function updateStatus(matchId, status) {
-    fetch('includes/update_status.php', {
+    fetch(document.baseURI + 'includes/update_status.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
